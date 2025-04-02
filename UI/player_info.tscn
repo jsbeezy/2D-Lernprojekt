@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvdbbr0koob1x"]
+
+[ext_resource type="Script" path="res://UI/player_info.gd" id="1_g2i5d"]
+[ext_resource type="PackedScene" uid="uid://chcjis0q2jmis" path="res://UI/health_heart.tscn" id="1_mys42"]
+[ext_resource type="PackedScene" uid="uid://cw08gdfo0d4n8" path="res://UI/mana_orb.tscn" id="2_3q3ui"]
+
+[node name="PlayerInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2i5d")
+
+[node name="Panel" type="Control" parent="."]
+custom_minimum_size = Vector2(256, 96)
+anchors_preset = 0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 112.0
+
+[node name="HealthBar" type="HBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(192, 48)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_right = 66.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="HealthHeart" parent="Panel/HealthBar" instance=ExtResource("1_mys42")]
+layout_mode = 2
+
+[node name="HealthHeart2" parent="Panel/HealthBar" instance=ExtResource("1_mys42")]
+layout_mode = 2
+
+[node name="HealthHeart3" parent="Panel/HealthBar" instance=ExtResource("1_mys42")]
+layout_mode = 2
+
+[node name="ManaBar" type="HBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -48.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ManaOrb" parent="Panel/ManaBar" instance=ExtResource("2_3q3ui")]
+layout_mode = 2
+
+[node name="ManaOrb2" parent="Panel/ManaBar" instance=ExtResource("2_3q3ui")]
+layout_mode = 2

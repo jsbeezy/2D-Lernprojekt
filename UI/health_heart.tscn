@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://chcjis0q2jmis"]
+
+[ext_resource type="Script" path="res://UI/health_heart.gd" id="1_55y0r"]
+[ext_resource type="Texture2D" uid="uid://cboe1af3s4ucv" path="res://Assets/Custom/health_heart.png" id="1_hyenq"]
+
+[node name="HealthHeart" type="Control"]
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1216.0
+offset_bottom = -672.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_55y0r")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="Control"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_hyenq")
+centered = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dwhmgtjf86nv8"]
+[gd_scene load_steps=46 format=3 uid="uid://dwhmgtjf86nv8"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_31lrf"]
 [ext_resource type="Texture2D" uid="uid://55qilgaafuk8" path="res://Assets/Characters/Players/Fiery Imp/jump/Sprites/jump-2.png" id="2_hvsnf"]
@@ -29,6 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://cbor22hcfwuw1" path="res://Assets/Characters/Players/Fiery Imp/run/Sprites/run-6.png" id="16_hmxot"]
 [ext_resource type="Texture2D" uid="uid://52m8i85ndwjv" path="res://Assets/Characters/Players/Fiery Imp/run/Sprites/run-7.png" id="17_p7mvh"]
 [ext_resource type="Texture2D" uid="uid://dhx00tdfm6j7g" path="res://Assets/Characters/Players/Fiery Imp/run/Sprites/run-8.png" id="18_e8w3g"]
+[ext_resource type="Texture2D" uid="uid://ckdvbxo1kwtuw" path="res://Assets/Characters/Players/Fiery Imp/shot/Sprites/shot-1.png" id="30_mnusj"]
+[ext_resource type="Texture2D" uid="uid://umdxfjktcsey" path="res://Assets/Characters/Players/Fiery Imp/shot/Sprites/shot-2.png" id="31_trm33"]
+[ext_resource type="Texture2D" uid="uid://cookjdvflbpve" path="res://Assets/Characters/Players/Fiery Imp/shot/Sprites/shot-3.png" id="32_vtiik"]
+[ext_resource type="Texture2D" uid="uid://wmog1o55fhue" path="res://Assets/Characters/Players/Fiery Imp/shot/Sprites/shot-4.png" id="33_tdaj6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_posp5"]
 height = 28.0
@@ -141,6 +145,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_mnusj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_trm33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_vtiik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_tdaj6")
+}],
+"loop": true,
+"name": &"Shoot",
 "speed": 5.0
 }]
 
@@ -377,6 +398,35 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_p61p1"]
+resource_name = "Shoot"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Shoot"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jrlpe"]
 _data = {
 "Die": SubResource("Animation_ptdvr"),
@@ -385,7 +435,8 @@ _data = {
 "Idle": SubResource("Animation_n8twd"),
 "Jump": SubResource("Animation_kn34q"),
 "RESET": SubResource("Animation_nesgm"),
-"Run": SubResource("Animation_wvd1u")
+"Run": SubResource("Animation_wvd1u"),
+"Shoot": SubResource("Animation_p61p1")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_084v2"]

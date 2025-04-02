@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://jjh332ivjcm1"]
+
+[ext_resource type="Script" path="res://Items/gem_item.gd" id="1_ffehv"]
+[ext_resource type="Texture2D" uid="uid://banlwwqaltcfn" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-1.png" id="1_sr2kf"]
+[ext_resource type="Texture2D" uid="uid://bl5a30eya47xp" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-2.png" id="2_cegyb"]
+[ext_resource type="Texture2D" uid="uid://b1k7ajvnxdtt1" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-3.png" id="3_b5f1d"]
+[ext_resource type="Texture2D" uid="uid://o6uqfvvyg1c4" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-4.png" id="4_yajf3"]
+[ext_resource type="Texture2D" uid="uid://dawss2eda1r43" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-5.png" id="5_2alee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tsgxl"]
+radius = 9.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxngu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sr2kf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cegyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b5f1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yajf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2alee")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xhrxj"]
+resource_name = "Idle"
+length = 1.4
+loop_mode = 1
+step = 0.28
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.28, 0.56, 0.84, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_1n46r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_npsgv"]
+_data = {
+"Idle": SubResource("Animation_xhrxj"),
+"RESET": SubResource("Animation_1n46r")
+}
+
+[node name="GemItem" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_ffehv")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tsgxl")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_fxngu")
+animation = &"Idle"
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_npsgv")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

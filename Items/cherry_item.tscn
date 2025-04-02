@@ -1,0 +1,117 @@
+[gd_scene load_steps=14 format=3 uid="uid://bx5o2v2wrkmc"]
+
+[ext_resource type="Texture2D" uid="uid://c7hrby1jkuiax" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-1.png" id="1_7c44g"]
+[ext_resource type="Script" path="res://Items/cherry_item.gd" id="1_rpfk8"]
+[ext_resource type="Texture2D" uid="uid://51f6kk7q0h65" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-2.png" id="2_jrs2k"]
+[ext_resource type="Texture2D" uid="uid://3u6iuxwmmv62" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-3.png" id="3_bwtma"]
+[ext_resource type="Texture2D" uid="uid://c2prplg4djpl1" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-4.png" id="4_fhlqm"]
+[ext_resource type="Texture2D" uid="uid://dvmtsjom7njgo" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-5.png" id="5_7x7x2"]
+[ext_resource type="Texture2D" uid="uid://beoypm0rgboba" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-6.png" id="6_5rmmn"]
+[ext_resource type="Texture2D" uid="uid://bvvbbddi2qseb" path="res://Assets/Props Items and VFX/Sunnyland items/Sprites/cherry/cherry-7.png" id="7_1ccfv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nt61y"]
+radius = 9.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewqkx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7c44g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jrs2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwtma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fhlqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7x7x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5rmmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1ccfv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_nhfaa"]
+resource_name = "Idle"
+length = 1.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_755d6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycadv"]
+_data = {
+"Idle": SubResource("Animation_nhfaa"),
+"RESET": SubResource("Animation_755d6")
+}
+
+[node name="CherryItem" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_rpfk8")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nt61y")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ewqkx")
+animation = &"Idle"
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ycadv")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

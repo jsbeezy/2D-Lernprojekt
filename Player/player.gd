@@ -7,10 +7,13 @@ extends CharacterBody2D
 @onready var takeDamageHitbox : CollisionShape2D = $TakeDamageArea/TakeDamageHitbox
 @onready var projectilesNode = $"../../Projectiles"
 @onready var fireballPath : PackedScene = preload("res://Player/fireball.tscn")
+@onready var playerInfo = $"../../UI/PlayerInfo"
 
 @export var speed: int = 200
 @export var jumpVelocity: int = -350
 
+var mana : int = 2
+var maxMana : int = 2
 var canDoubleJump : bool = false
 var animationLocked : bool = false
 var isDead : bool = false
@@ -44,7 +47,7 @@ func apply_gravity(delta):
 
 func handle_movement():
 	var direction = Input.get_axis("Left", "Right")
-	if direction:
+	if direction and !animationLocked:
 		velocity.x = direction * speed
 		sprite.scale.x = direction
 	else:
@@ -59,7 +62,12 @@ func handle_jump():
 		velocity.y = jumpVelocity
 
 func handle_fireball():
-	if Input.is_action_just_pressed("LeftClick"):
+	if Input.is_action_just_pressed("LeftClick") and mana > 0 and !animationLocked:
+		animationPlayer.play("Shoot")
+		animationLocked = true
+		mana -= 1
+		playerInfo.updateManaDisplay(mana)
+		await get_tree().create_timer(0.2).timeout
 		var fireballInstance = fireballPath.instantiate()
 		var playerPositionWithOffset : Vector2 = self.global_position + Vector2(0, -14)
 		fireballInstance.global_position = playerPositionWithOffset
@@ -67,19 +75,29 @@ func handle_fireball():
 		projectilesNode.add_child(fireballInstance)
 
 func takeDamage():
+	playerInfo.updateHealthDisplay(healthComponent.health)
 	Engine.time_scale = 0.5
 	takeDamageHitbox.set_deferred("disabled", true)
 	animationLocked = true
 	animationPlayer.play("Hurt")
 
 func die():
+	playerInfo.updateHealthDisplay(healthComponent.health)
 	Engine.time_scale = 1
 	knockbackComponent.isActive = false
 	isDead = true
 	animationPlayer.play("Hurt")
 
+func gainMana(amount : int):
+	if mana + amount > maxMana:
+		mana = maxMana
+	else:
+		mana += amount
+
 func _on_animation_player_animation_finished(animName):
 	Engine.time_scale = 1
+	if animName == "Shoot":
+		animationLocked = false
 	if animName == "Hurt":
 		takeDamageHitbox.set_deferred("disabled", false)
 		animationLocked = false
