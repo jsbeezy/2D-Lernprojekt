@@ -11,6 +11,7 @@ var speed : int  = 50
 var movingUp : bool = true
 
 func _ready():
+	movingUp = randi() % 2 == 0
 	animationPlayer.play("Fly")
 
 func _physics_process(_delta):
