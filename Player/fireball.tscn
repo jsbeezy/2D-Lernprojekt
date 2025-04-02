@@ -207,7 +207,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2icqr"]
-radius = 14.0
+radius = 16.0
 
 [node name="Fireball" type="Area2D"]
 collision_layer = 8

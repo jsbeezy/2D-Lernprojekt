@@ -67,7 +67,7 @@ func handle_fireball():
 		projectilesNode.add_child(fireballInstance)
 
 func takeDamage():
-	Engine.time_scale = 0.4
+	Engine.time_scale = 0.5
 	takeDamageHitbox.set_deferred("disabled", true)
 	animationLocked = true
 	animationPlayer.play("Hurt")
@@ -76,12 +76,15 @@ func die():
 	Engine.time_scale = 1
 	knockbackComponent.isActive = false
 	isDead = true
-	animationPlayer.play("Die")
+	animationPlayer.play("Hurt")
 
 func _on_animation_player_animation_finished(animName):
 	Engine.time_scale = 1
 	if animName == "Hurt":
 		takeDamageHitbox.set_deferred("disabled", false)
 		animationLocked = false
+		if isDead:
+			takeDamageHitbox.set_deferred("disabled", true)
+			animationPlayer.play("Die")
 	if animName == "Die":
-		queue_free()
+		get_tree().reload_current_scene()
