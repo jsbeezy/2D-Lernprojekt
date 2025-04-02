@@ -13,7 +13,6 @@ func unpause():
 		self.queue_free()
 
 func _on_continue_button_pressed():
-	print("JOOOOO")
 	unpause()
 
 func _on_restart_button_pressed():

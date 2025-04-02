@@ -1,0 +1,185 @@
+[gd_scene load_steps=18 format=3 uid="uid://dyno3dofho4rr"]
+
+[ext_resource type="Script" path="res://Enemies/eagle.gd" id="1_7naaa"]
+[ext_resource type="Texture2D" uid="uid://cxa1gyhvtth1m" path="res://Assets/Characters/Enemies and NPC/eagle/Sprites/attack/eagle-attack-1.png" id="1_lrvg5"]
+[ext_resource type="Texture2D" uid="uid://bxqvvcd0bo5y" path="res://Assets/Characters/Enemies and NPC/eagle/Sprites/attack/eagle-attack-2.png" id="2_6shdp"]
+[ext_resource type="PackedScene" uid="uid://56hr14fse4ql" path="res://Components/HealthComponent.tscn" id="2_w7qgk"]
+[ext_resource type="Texture2D" uid="uid://bpd1jstei7nbp" path="res://Assets/Props Items and VFX/enemy-death 2/Sprites/enemy-death-1.png" id="3_5x8o4"]
+[ext_resource type="Texture2D" uid="uid://d05oq142oylkc" path="res://Assets/Characters/Enemies and NPC/eagle/Sprites/attack/eagle-attack-3.png" id="3_7rj8t"]
+[ext_resource type="Texture2D" uid="uid://dhhmh5uuwwed6" path="res://Assets/Characters/Enemies and NPC/eagle/Sprites/attack/eagle-attack-4.png" id="4_g6ksl"]
+[ext_resource type="Texture2D" uid="uid://d30pdl8xj83b2" path="res://Assets/Props Items and VFX/enemy-death 2/Sprites/enemy-death-2.png" id="4_x3gsd"]
+[ext_resource type="Texture2D" uid="uid://bo3afe713uaws" path="res://Assets/Props Items and VFX/enemy-death 2/Sprites/enemy-death-3.png" id="5_kks32"]
+[ext_resource type="Texture2D" uid="uid://og8y0q1rta77" path="res://Assets/Props Items and VFX/enemy-death 2/Sprites/enemy-death-4.png" id="6_srju3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amdgy"]
+radius = 12.0
+height = 25.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80gib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5x8o4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x3gsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kks32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_srju3")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lrvg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6shdp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7rj8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g6ksl")
+}],
+"loop": true,
+"name": &"Flap",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xnu3v"]
+resource_name = "Fly"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Flap"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3jv2y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Flap"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_u42mq"]
+resource_name = "Die"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Die"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_isbtv"]
+_data = {
+"Die": SubResource("Animation_u42mq"),
+"Fly": SubResource("Animation_xnu3v"),
+"RESET": SubResource("Animation_3jv2y")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_anr4b"]
+radius = 13.0
+
+[node name="Eagle" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 16
+slide_on_ceiling = false
+script = ExtResource("1_7naaa")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_w7qgk")]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_amdgy")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -2)
+sprite_frames = SubResource("SpriteFrames_80gib")
+animation = &"Flap"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_isbtv")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="DealDamageArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="DealDamageHitbox" type="CollisionShape2D" parent="DealDamageArea"]
+shape = SubResource("CircleShape2D_anr4b")
+
+[node name="CoolDownTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="DealDamageArea" to="." method="_on_deal_damage_area_area_entered"]
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
