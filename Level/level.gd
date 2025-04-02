@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var pauseMenuResource : PackedScene = preload("res://pause_menu.tscn")
+@onready var pauseMenuResource : PackedScene = preload("res://UI/pause_menu.tscn")
 var pauseMenuInstance : Control = null
 @onready var ui = $UI
 

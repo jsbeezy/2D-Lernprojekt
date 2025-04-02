@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="2D-Lernspiel"
-run/main_scene="res://level.tscn"
+run/main_scene="res://Level/level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 
