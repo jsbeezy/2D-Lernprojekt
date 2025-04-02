@@ -7,6 +7,7 @@ func _ready():
 	health = maxHealth
 
 func loseHealth(amount : int):
+	print("losing")
 	health -= amount
 	if health <= 0:
 		owner.die()

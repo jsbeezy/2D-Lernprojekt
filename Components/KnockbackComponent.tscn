@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vjk2ed8oakkg"]
+
+[ext_resource type="Script" path="res://Components/knockback_component.gd" id="1_y8g4l"]
+
+[node name="KnockbackComponent" type="Node2D"]
+script = ExtResource("1_y8g4l")

@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
 @onready var healthComponent = $HealthComponent
+@onready var knockbackComponent = $KnockbackComponent
 @onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $AnimatedSprite
 @onready var takeDamageHitbox : CollisionShape2D = $TakeDamageArea/TakeDamageHitbox
+@onready var projectilesNode = $"../../Projectiles"
+@onready var fireballPath : PackedScene = preload("res://Player/fireball.tscn")
 
 @export var speed: int = 200
 @export var jumpVelocity: int = -350
@@ -19,6 +22,7 @@ func _physics_process(delta):
 	if !animationLocked:
 		handle_animation()
 	handle_movement()
+	handle_fireball()
 	if is_on_floor() or canDoubleJump:
 		handle_jump()
 	move_and_slide()
@@ -54,6 +58,14 @@ func handle_jump():
 			canDoubleJump = true
 		velocity.y = jumpVelocity
 
+func handle_fireball():
+	if Input.is_action_just_pressed("LeftClick"):
+		var fireballInstance = fireballPath.instantiate()
+		var playerPositionWithOffset : Vector2 = self.global_position + Vector2(0, -14)
+		fireballInstance.global_position = playerPositionWithOffset
+		fireballInstance.direction = (get_global_mouse_position() - playerPositionWithOffset).normalized()
+		projectilesNode.add_child(fireballInstance)
+
 func takeDamage():
 	Engine.time_scale = 0.4
 	takeDamageHitbox.set_deferred("disabled", true)
@@ -62,6 +74,7 @@ func takeDamage():
 
 func die():
 	Engine.time_scale = 1
+	knockbackComponent.isActive = false
 	isDead = true
 	animationPlayer.play("Die")
 

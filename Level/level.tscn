@@ -325,4 +325,6 @@ position = Vector2(38, 220)
 [node name="PlayerCamera" parent="Player" node_paths=PackedStringArray("player") instance=ExtResource("5_0dcnr")]
 player = NodePath("../Player")
 
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="UI" type="CanvasLayer" parent="."]
