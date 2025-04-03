@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var animationPlayer = $AnimationPlayer
 @onready var endScreenResource : PackedScene = preload("res://UI/end_screen.tscn")
-var gameEnd = false
+var gameEnd : bool = false
 
 func _ready():
 	animationPlayer.play("Idle")

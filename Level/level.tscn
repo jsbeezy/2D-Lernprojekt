@@ -328,7 +328,7 @@ position = Vector2(266, 224)
 position = Vector2(484, 204)
 
 [node name="Frog" parent="_GEGNER" instance=ExtResource("10_hhqw3")]
-position = Vector2(379, 231)
+position = Vector2(489, 109)
 
 [node name="Player" type="Node2D" parent="."]
 
