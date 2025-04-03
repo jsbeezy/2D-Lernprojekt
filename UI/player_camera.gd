@@ -12,7 +12,7 @@ var weight : float
 func _ready():
 	self.limit_top = -173
 	self.limit_left = 0
-	self.limit_bottom = 466
+	self.limit_bottom = 450
 	global_position = getPlayerPositionWithOffset().floor()
 	weight = float(smoothingDistance) / 100
 

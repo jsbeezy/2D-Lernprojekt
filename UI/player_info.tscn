@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvdbbr0koob1x"]
 
 [ext_resource type="Script" path="res://UI/player_info.gd" id="1_g2i5d"]
-[ext_resource type="PackedScene" uid="uid://chcjis0q2jmis" path="res://_AUFNEHMBARES/health_heart.tscn" id="1_mys42"]
-[ext_resource type="PackedScene" uid="uid://cw08gdfo0d4n8" path="res://_AUFNEHMBARES/mana_orb.tscn" id="2_3q3ui"]
+[ext_resource type="PackedScene" uid="uid://chcjis0q2jmis" path="res://UI/health_heart.tscn" id="1_mys42"]
+[ext_resource type="PackedScene" uid="uid://cw08gdfo0d4n8" path="res://UI/mana_orb.tscn" id="2_3q3ui"]
 
 [node name="PlayerInfo" type="Control"]
 layout_mode = 3

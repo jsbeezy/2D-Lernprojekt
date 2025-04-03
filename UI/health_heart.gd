@@ -1,10 +1,7 @@
 extends Control
 
-var isActive : bool = true
+func activate():
+	$Control/Heart.modulate = Color(1, 1, 1, 1)
 
-func toggleActive():
-	isActive = !isActive
-	if !isActive:
-		$Control/Heart.modulate = Color(1, 1, 1, 0.2)
-	else:
-		$Control/Heart.modulate = Color(1, 1, 1, 1)
+func deactivate():
+	$Control/Heart.modulate = Color(1, 1, 1, 0.2)

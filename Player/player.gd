@@ -19,6 +19,8 @@ var animationLocked : bool = false
 var isDead : bool = false
 
 func _physics_process(delta):
+	if self.global_position.y > 455 and !isDead:
+		healthComponent.loseHealth(healthComponent.health)
 	if isDead:
 		return
 	apply_gravity(delta)
@@ -110,5 +112,4 @@ func _on_animation_player_animation_finished(animName):
 func _on_take_damage_area_body_entered(body):
 	if body.name == "_GEFAHREN":
 		healthComponent.loseHealth(1)
-		velocity.y = 0
-		velocity.y -= 250
+		velocity.y = -250

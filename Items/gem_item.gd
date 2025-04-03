@@ -8,8 +8,6 @@ func _ready():
 func _on_area_entered(area):
 	if area.is_in_group("Player"):
 		var player = area.get_parent()
-		var manaBeforeItemPickup = player.mana
 		player.gainMana(1)
-		if manaBeforeItemPickup != player.maxMana:
-			player.playerInfo.updateManaDisplay(player.mana - 1)
+		player.playerInfo.updateManaDisplay(player.mana)
 		queue_free()
