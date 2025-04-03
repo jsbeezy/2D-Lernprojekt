@@ -467,10 +467,11 @@ libraries = {
 }
 
 [node name="TakeDamageArea" type="Area2D" parent="." groups=["Player"]]
-collision_mask = 0
+collision_mask = 32
 
 [node name="TakeDamageHitbox" type="CollisionShape2D" parent="TakeDamageArea"]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_084v2")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="TakeDamageArea" to="." method="_on_take_damage_area_body_entered"]
