@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://25fldeej6r4q"]
+[gd_scene load_steps=16 format=4 uid="uid://25fldeej6r4q"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_68u0v"]
 [ext_resource type="Texture2D" uid="uid://cahl4ddulnid6" path="res://Assets/Environments/Layers/tileset.png" id="1_881sn"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bx5o2v2wrkmc" path="res://Items/cherry_item.tscn" id="7_kqqej"]
 [ext_resource type="PackedScene" uid="uid://jjh332ivjcm1" path="res://Items/gem_item.tscn" id="8_i605a"]
 [ext_resource type="PackedScene" uid="uid://dvdbbr0koob1x" path="res://UI/player_info.tscn" id="10_02wtl"]
+[ext_resource type="PackedScene" uid="uid://ce2nk5lffbt10" path="res://Level/exit_portal.tscn" id="13_865py"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2ull"]
 texture = ExtResource("1_881sn")
@@ -341,3 +342,6 @@ player = NodePath("../Player")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="PlayerInfo" parent="UI" instance=ExtResource("10_02wtl")]
+
+[node name="ExitPortal" parent="." instance=ExtResource("13_865py")]
+position = Vector2(610, 217)

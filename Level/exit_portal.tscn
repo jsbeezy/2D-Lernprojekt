@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce2nk5lffbt10"]
+
+[ext_resource type="Texture2D" uid="uid://bp3b0owmotvhe" path="res://Assets/Custom/spawnbubble.png" id="1_iqsg0"]
+[ext_resource type="Script" path="res://Level/exit_portal.gd" id="1_jmo1o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6tap"]
+
+[sub_resource type="Animation" id="Animation_4smf4"]
+resource_name = "Idle"
+length = 1.2
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s0an6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sk1bf"]
+_data = {
+"Idle": SubResource("Animation_4smf4"),
+"RESET": SubResource("Animation_s0an6")
+}
+
+[node name="ExitPortal" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_jmo1o")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i6tap")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_iqsg0")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sk1bf")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

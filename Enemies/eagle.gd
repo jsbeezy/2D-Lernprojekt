@@ -25,6 +25,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func die():
+	$DealDamageArea.monitoring = false
 	isDead = true
 	animationPlayer.play("Die")
 
