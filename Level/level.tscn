@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://25fldeej6r4q"]
+[gd_scene load_steps=17 format=4 uid="uid://25fldeej6r4q"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_68u0v"]
 [ext_resource type="Texture2D" uid="uid://cahl4ddulnid6" path="res://Assets/Environments/Layers/tileset.png" id="1_881sn"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bx5o2v2wrkmc" path="res://Items/cherry_item.tscn" id="7_kqqej"]
 [ext_resource type="PackedScene" uid="uid://jjh332ivjcm1" path="res://Items/gem_item.tscn" id="8_i605a"]
 [ext_resource type="PackedScene" uid="uid://dvdbbr0koob1x" path="res://UI/player_info.tscn" id="10_02wtl"]
+[ext_resource type="PackedScene" uid="uid://5vb67f102yuj" path="res://Enemies/frog.tscn" id="10_hhqw3"]
 [ext_resource type="PackedScene" uid="uid://ce2nk5lffbt10" path="res://Level/exit_portal.tscn" id="13_865py"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2ull"]
@@ -323,11 +324,11 @@ position = Vector2(266, 224)
 
 [node name="_GEGNER" type="Node2D" parent="."]
 
-[node name="Eagle" parent="_GEGNER" instance=ExtResource("5_kg2kd")]
-position = Vector2(392, 152)
-
 [node name="Eagle2" parent="_GEGNER" instance=ExtResource("5_kg2kd")]
 position = Vector2(484, 204)
+
+[node name="Frog" parent="_GEGNER" instance=ExtResource("10_hhqw3")]
+position = Vector2(379, 231)
 
 [node name="Player" type="Node2D" parent="."]
 
