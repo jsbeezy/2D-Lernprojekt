@@ -4,7 +4,6 @@ extends Node2D
 var pauseMenuInstance : Control = null
 @onready var ui = $UI
 
-
 func _process(_delta):
 	if Input.is_action_just_pressed("Escape") and !pauseMenuInstance:
 		pauseMenuInstance = pauseMenuResource.instantiate()
