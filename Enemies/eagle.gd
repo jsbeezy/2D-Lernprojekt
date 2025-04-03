@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
 @onready var healthComponent = $HealthComponent
-@onready var timer = $Timer
-@onready var coolDownTimer = $CoolDownTimer
+@onready var cooldownTimer = $CooldownTimer
 @onready var animationPlayer = $AnimationPlayer
 @onready var dealDamageArea = $DealDamageArea
 
@@ -29,9 +28,6 @@ func die():
 	isDead = true
 	animationPlayer.play("Die")
 
-func _on_timer_timeout():
-	movingUp = !movingUp
-
 func _on_animation_player_animation_finished(animName):
 	if animName == "Die":
 		queue_free()
@@ -41,7 +37,10 @@ func _on_deal_damage_area_area_entered(area):
 		area.get_parent().knockbackComponent.handleKnockback(self.global_position)
 		area.get_parent().healthComponent.loseHealth(1)
 		dealDamageArea.collision_mask = 8
-		coolDownTimer.start()
+		cooldownTimer.start()
 
-func _on_cool_down_timer_timeout():
+func _on_direction_change_timer_timeout():
+	movingUp = !movingUp
+
+func _on_cooldown_timer_timeout():
 	dealDamageArea.collision_mask = 1
