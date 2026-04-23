@@ -13,7 +13,6 @@ Es sind Timer und ein Zielpunkt integriert, um sich beim Bezwingen des selbst er
 
 ## 📚 Verwendete Technologien
 - **Godot Engine**
-- **GDScript** für Skripterstellung
 
 ## 🛠 Installation & Nutzung
 1. **Projekt in Godot öffnen**: Lade das Repository herunter und öffne es mit Godot.
