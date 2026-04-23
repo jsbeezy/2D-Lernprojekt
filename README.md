@@ -15,13 +15,14 @@ Es sind Timer und ein Zielpunkt integriert, um sich beim Bezwingen des selbst er
 - **Godot Engine**
 
 ## 🛠 Installation & Nutzung
-1. **Projekt in Godot öffnen**: Lade das Repository herunter und öffne es mit Godot.
-2. **Level anpassen**: Nutze die Tilemaps, um das Level zu bearbeiten, Hindernisse und Gefahren hinzuzufügen.
-3. **Gegner hinzufügen**: Ziehe Gegner-Szenen aus dem "_GEGNER"-Ordner in die "_GEGNER"-Node im Level und platziere sie dann in der 2D Ansicht beliebig.
-4. **Dekorationen hinzufügen**: Ziehe Bilder aus dem "_DEKORATIONEN"-Ordner in die "_DEKORATIONEN"-Node im Level und platziere sie dann in der 2D Ansicht beliebig.
-5. **Aufnehmbare Gegenstände hinzufügen**: Ziehe Item-Szenen aus dem "_AUFNEHMBARES"-Ordner in die "_AUFNEHMBARES"-Node im Level und platziere sie dann in der 2D Ansicht beliebig.
-6. **Zielpunkt versetzen**: Suche links in der Node-Hierarchie nach der "Endportal"-Szene. Klicke sie an und verschiebe sie dann in der 2D-Levelübersicht nach belieben. Duplikation für mehrere Endpunkte ist ebenfalls möglich.
-7. **Spiel testen**: Starte das Spiel (F5 oder Play-Button oben rechts im Fenster) und durchlaufe dein individuelles Level.
+1. **Godot herunterladen**: Lade dir die Godot Engine herunter. (https://godotengine.org/)
+2. **Projekt in Godot öffnen**: Lade dieses Projekt herunter und öffne es mit Godot.
+3. **Level anpassen**: Nutze die Tilemaps, um das Level zu bearbeiten, Hindernisse und Gefahren hinzuzufügen.
+4. **Gegner hinzufügen**: Ziehe Gegner-Szenen aus dem "_GEGNER"-Ordner in die "_GEGNER"-Node im Level und platziere sie dann in der 2D Ansicht beliebig.
+5. **Dekorationen hinzufügen**: Ziehe Bilder aus dem "_DEKORATIONEN"-Ordner in die "_DEKORATIONEN"-Node im Level und platziere sie dann in der 2D Ansicht beliebig.
+6. **Aufnehmbare Gegenstände hinzufügen**: Ziehe Item-Szenen aus dem "_AUFNEHMBARES"-Ordner in die "_AUFNEHMBARES"-Node im Level und platziere sie dann in der 2D Ansicht beliebig.
+7. **Zielpunkt versetzen**: Suche links in der Node-Hierarchie nach der "Endportal"-Szene. Klicke sie an und verschiebe sie dann in der 2D-Levelübersicht nach belieben. Duplikation für mehrere Endpunkte ist ebenfalls möglich.
+8. **Spiel testen**: Starte das Spiel (F5 oder Play-Button oben rechts im Fenster) und durchlaufe dein individuelles Level.
 
 NOTIZ: Man kann die einzelnen Elemente auch direkt aus den Ordnern unten links in die 2D Ansicht ziehen, aber wenn diese nicht in ihren Nodes in der Node-Hierarchie sind, gibt es möglicherweise ungewollte optische Überlappungen.
 Sie können allerdings auch nachträglich in der Node-Hierarchie an ihre richtige Stelle gezogen werden, sie erscheinen dann nur ungeordnet unten oder als Kind der zum Zeitpunkt des Reinziehens ausgewählten Node in der Hierarchie.
